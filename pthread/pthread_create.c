@@ -2,6 +2,7 @@
 #include<unistd.h>
 #include<stdlib.h>
 #include<pthread.h>
+#include<string.h>
 void* pthread_fun(void *arg)
 {
    printf("pthrad id=%lu   process id=%d\n",pthread_self(),getpid());
@@ -14,7 +15,7 @@ int main()
   int ret=pthread_create(&tid,NULL,pthread_fun,NULL);
   if(ret!=0)//等于0成功
   {
-     printf("errno pthread_create");
+     fprintf(stderr,"errno pthread_create%s",strerror(ret));
 	 exit(1); 
   } 
   sleep(1); 
